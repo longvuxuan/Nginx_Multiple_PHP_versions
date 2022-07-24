@@ -424,6 +424,12 @@ git clone git@bitbucket_personal:*****/*****.git
 
 ```
 
+Notice: use `ssh-copy-id` command with -i parameter to determine default ssh key file.
+
+```sh
+ssh-copy-id -i ~/.ssh/id_rsa.pub username@hostname
+```
+
 DONE !!!
 
 
