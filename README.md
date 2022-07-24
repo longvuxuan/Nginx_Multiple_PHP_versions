@@ -90,7 +90,7 @@ Go to servers folder in /usr/local/etc/nginx/servers.
 
 ```sh
 cd /usr/local/etc/nginx/servers
-sudo vi damda.skus.test.conf
+sudo vi <your_custom_domain>.conf
 ```
 
 Copy and paste the example content:
@@ -99,13 +99,13 @@ Copy and paste the example content:
 server {
     listen 443 ssl http2;
     
-    ssl_certificate /Users/<user>/certs/demo.test.pem;
-    ssl_certificate_key /Users/<user>/certs/demo.test-key.pem;
+    ssl_certificate /Users/<user>/certs/<your_custom_domain>.pem;
+    ssl_certificate_key /Users/<user>/certs/<your_custom_domain>-key.pem;
 
     server_name  demo.test;
 
-    set $MAGE_ROOT /usr/local/var/www/demo;
-    include /usr/local/var/www/demo/nginx.conf.sample;
+    set $MAGE_ROOT <your_root_path>;
+    include <your_root_path>/nginx.conf.sample;
 }
 ```
 
@@ -182,6 +182,11 @@ alias php81="/usr/local/opt/php@8.1/bin/php"
 alias php73="/usr/local/opt/php@7.3/bin/php"
 alias php74="/usr/local/opt/php@7.4/bin/php"
 alias mage="bin/magento"
+alias mage73="php73 bin/magento"
+alias mage74="php74 bin/magento"
+alias composer73="php73 /usr/local/bin/composer"
+alias composer81="php81 /usr/local/bin/composer"
+alias composer74="php74 /usr/local/bin/composer"
 
 # Make switching versions easy
 function phpv() {
