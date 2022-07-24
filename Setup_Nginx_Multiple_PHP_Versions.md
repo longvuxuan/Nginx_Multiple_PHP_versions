@@ -9,10 +9,11 @@ Use brew to install all the components:
 - Mailhog
 - Elasticsearch
 - Xdebug
+- SSH Keys
 
 ## Installation
 
-#### BREW
+### BREW
 
 Install xcode tools and brew.
 
@@ -25,7 +26,7 @@ brew install wget
 brew doctor
 ```
 
-#### Nginx
+### Nginx
 
 Install and configure nginx
 
@@ -84,7 +85,7 @@ server {
 .....
 }
 ```
-##### Configure Server Blocks (Virtualhost)
+### Configure Server Blocks (Virtualhost)
 
 Go to servers folder in /usr/local/etc/nginx/servers.
 
@@ -120,7 +121,7 @@ sudo nginx -s reload
 
 Go to https://demo.test link for testing the Virtualhost
 
-#### PHP versions
+### PHP versions
 
 Install multiple versions via brew
 
@@ -207,7 +208,7 @@ or
 phpv 8.1
 ```
 
-#### Dnsmasq
+### Dnsmasq
 
 Save yourself the fuss of editing your hosts file constantly you can use dnsmasq.
 
@@ -226,7 +227,7 @@ sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'
 ping demo.test
 ```
 
-#### MailHog
+### MailHog
 
 Install it to test emails on the local site.
 ```sh
@@ -266,7 +267,7 @@ sendmail_path = /usr/local/opt/mailhog/bin/MailHog sendmail test@localhost
 ```
 
 
-#### Mysql + PhpMyadmin
+### Mysql + PhpMyadmin
 
 Install mysql and phpmyadmin
 
@@ -301,7 +302,7 @@ mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'p
 
 brew services restart mysql
 ```
-###### PHPMYADMIN
+### PHPMYADMIN
 
 Install and symlink phpmyadmin
 
@@ -313,7 +314,7 @@ ln -sfv /usr/local/share/phpmyadmin /usr/local/var/www/
 
 Go to http://localhost/phpmyadmin link for testing again.
 
-#### MKCERT
+### MKCERT
 
 Install mkcert on the local to use https
 ```sh
@@ -328,7 +329,7 @@ cd ~/certs
 mkcert damda.skus.test
 ```
 
-#### Elasticsearch
+### Elasticsearch
 
 Install the Elasticsearch
 
@@ -337,7 +338,7 @@ brew tap elastic/tap
 brew install elastic/tap/elasticsearch-full
 ```
 
-#### Xdebug
+### Xdebug
 
 Install Xdebug extension
 
@@ -379,10 +380,51 @@ brew services restart php@7.3
 brew services list
 ```
 
+### Configure Bitbucket or Github with multiple SSH Keys
 
+Generate the SSH keys by running command:
+```sh
+ssh-keygen
+```
 
+Add the public keys to the accounts on the Bitbucket.
 
+Configure the ssh config file in `~/ssh/config`.
 
+```sh
+vi ~/.ssh/config
+
+Host bitbucket_work
+     HostName bitbucket.org
+     User git
+     IdentityFile ~/.ssh/id_rsa_work
+     IdentitiesOnly yes
+
+Host bitbucket_personal
+     HostName bitbucket.org
+     User git
+     IdentityFile ~/.ssh/id_rsa_personal
+     IdentitiesOnly yes
+```
+
+When you clone the repositories on the Bitbucket.org, you only need to change the host again.
+
+```sh
+For example:
+
+git clone git@bitbucket.org:*****/*****.git
+
+To:
+
+=> for Work
+git clone git@bitbucket_work:*****/*****.git
+
+=> for Personal
+git clone git@bitbucket_personal:*****/*****.git
+
+```
+
+DONE !!!
 
 
 
