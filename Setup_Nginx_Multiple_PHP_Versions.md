@@ -430,6 +430,14 @@ Notice: use `ssh-copy-id` command with -i parameter to determine default ssh key
 ssh-copy-id -i ~/.ssh/id_rsa.pub username@hostname
 ```
 
+
+### Git autocomplete ZSH
+
+Run the command to apply the git autocomplete in zsh
+```sh
+echo 'autoload -Uz compinit && compinit' >> ~/.zshrc && . ~/.zshrc
+```
+
 DONE !!!
 
 
